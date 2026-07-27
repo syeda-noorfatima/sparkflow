@@ -2,7 +2,6 @@
 
 **AI-powered executive functioning assistant — turn messy thoughts into organized, actionable tasks.**
 
-
 ---
 
 ## a. What it is & the problem it solves
@@ -11,7 +10,7 @@
 
 Most productivity apps assume you already know how to plan: what category a task belongs in, how urgent it is, when to be reminded. For a lot of people — especially with ADHD — that upfront planning work is exactly what makes the task un-doable. The result is a familiar cycle: important things get forgotten, responsibilities pile up and feel overwhelming, and the planning app itself gets abandoned.
 
-SparkFlow flips the order of operations. **You capture first** — by typing or speaking whatever's in your head, in whatever order it comes out — and **AI does the executive functioning work**: extracting the actual tasks, detecting deadlines and reminders, categorizing, and prioritizing. You review the result and stay in full control, but you never have to build the plan from a blank page yourself.
+SparkFlow flips the order of operations. **You capture first** — by typing or speaking whatever's in your head, in whatever order it comes out — and **AI does the executive functioning work**: extracting the actual tasks, detecting deadlines and reminders, categorizing, and prioritizing. Nothing waits on you to organize it — you just capture, and it's already sorted for you.
 
 **Who it's for:** university students with ADHD, adults with ADHD, and anyone managing multiple responsibilities who finds "just organize your tasks" easier said than done.
 
@@ -32,16 +31,16 @@ SparkFlow flips the order of operations. **You capture first** — by typing or 
 
 ### AI Processing
 - Automatically extracts individual tasks from unstructured input (including multiple tasks from a single capture).
-- Detects deadlines, reminders, and relevant notes.
+- Detects dates, reminder times, recurrence, and relevant notes from natural language.
 - Categorizes and prioritizes tasks into **Must Do** vs **Could Do**.
-- Asks a single, concise clarification question when — and only when — essential information is genuinely missing (e.g. "Which Friday do you mean?"). It never invents dates, priorities, or details.
+- Follows a **"Capture and Forget"** philosophy — processing never interrupts the user with follow-up questions. If scheduling details are vague, the AI makes the best reasonable interpretation (e.g. "someday" → no fixed date); if something is genuinely unmentioned, it's left as "Not Set" rather than invented.
 
 ### Review & Editing
 - Users can edit title, notes, category, deadline, priority, or delete the task entirely.
 - Existing tasks can also be edited conversationally (e.g. "Change the reminder to Friday at 5 PM" or "Move this to Could Do").
 
 ### Dashboard
-- **Next Priority** — task that matters most right now to prevent ADHD paralysis that is caused by too many options.
+- **Next Priority** — surfaces the single task that matters most right now, to cut through ADHD decision paralysis caused by seeing too many options at once.
 - **Must Do** / **Could Do** lists, AI-ordered but manually reorderable.
 - **Completed** tasks, collapsed by default so they don't clutter the view.
 
@@ -55,7 +54,7 @@ SparkFlow flips the order of operations. **You capture first** — by typing or 
 - Dismissed reminders don't repeat; snoozed reminders fire once more at the chosen time.
 
 ### Inbox
-- Tracks captures through their lifecycle: Processing → Needs Clarification / Failed / Completed.
+- Tracks captures through their lifecycle: Processing → Failed → Completed.
 - Failed AI processing is retried automatically without losing the original capture.
 
 ### Settings
@@ -72,16 +71,16 @@ The core AI feature is **automatic task extraction, prioritization, and organiza
 
 **What it does, step by step:**
 1. Takes the user's raw capture (e.g. *"Psychology assignment due Thursday. Maybe learn Photoshop. Call Mom Friday."*)
-2. Splits it into individual, discrete tasks.
-3. Extracts, per task: deadline, reminder time, notes, category, and priority.
+2. Splits it into individual, discrete tasks — without breaking apart proper nouns or titles that happen to contain "and" (e.g. "Read Crime and Punishment" stays one task).
+3. Extracts, per task: title (cleaned of all date/time language), date, reminder time, repeat/recurrence, repeat-end condition, category, and priority.
 4. Sorts tasks into **Must Do** vs **Could Do**.
-5. If something essential is missing and can't be safely inferred (e.g. an ambiguous "Friday"), it asks **one** short clarification question instead of guessing.
-6. Generates **Next Priority** card highlighting task that is most urgent.
-7. Everything gets saved.
+5. Never invents a specific date the user didn't imply — vague phrases get a reasonable best-guess mapping (e.g. "tomorrow morning" → date "Tomorrow", reminder "9:00 AM"), and truly unspecified fields are left as "Not Set."
+6. Generates a **Next Priority** card highlighting the single most urgent task.
+7. Everything is saved immediately — no clarification step, no interruption.
 
-**Model / provider used:** [ADD — e.g. "Google Gemini 1.5 Flash (free tier) via the Gemini API"]
+**Model / provider used:** Google Gemini 3.6 Flash (free tier), via the `@google/genai` SDK.
 
-**System prompt / instructions behind it** 
+**System prompt / instructions behind it:**
 
 ```
 You are SparkFlow's AI Executive Function Assistant. SparkFlow is an ADHD-first task management application.
@@ -220,51 +219,61 @@ Return structured JSON conforming strictly to the response schema.
 
 | Category | Tool / Service |
 |---|---|
-| AI model | [Gemini 3.6 Flash — free tier] |
-| Backend / database | [Firebase (Firestore + Auth + Security Rules)] |
-| Frontend framework | [Built via Google AI Studio] |
-| Hosting / deployment | [Vercel] |
-| Voice-to-text | [Browser's built-in Web Speech API ] |
+| AI model | Google Gemini 3.6 Flash (free tier), via the `@google/genai` SDK |
+| Backend / database | Firebase (Firestore), with a custom Express (Node.js) server |
+| Frontend framework | React + TypeScript + Vite (built with Google AI Studio) |
+| Hosting / deployment | Vercel |
+| Voice-to-text | Browser's built-in Web Speech API (no external API) |
 | Version control | GitHub (public repository) |
+| Other | Tailwind CSS, Lucide (icons), Motion (animations) |
 
 ---
 
 ## f. Screenshots
 
-![](./assets/screenshots/image%20(10).png)
-![](./assets/screenshots/image%20(11).png)
-![](./assets/screenshots/image%20(12).png)
-![](./assets/screenshots/image%20(13).png)
-![](./assets/screenshots/image%20(14).png)
-![](./assets/screenshots/image%20(15).png)
-![](./assets/screenshots/image%20(16).png)
+<table>
+<tr>
+<td><img src="./assets/screenshots/image%20(10).png" width="260"/></td>
+<td><img src="./assets/screenshots/image%20(11).png" width="260"/></td>
+<td><img src="./assets/screenshots/image%20(12).png" width="260"/></td>
+</tr>
+<tr>
+<td><img src="./assets/screenshots/image%20(13).png" width="260"/></td>
+<td><img src="./assets/screenshots/image%20(14).png" width="260"/></td>
+<td><img src="./assets/screenshots/image%20(15).png" width="260"/></td>
+</tr>
+<tr>
+<td><img src="./assets/screenshots/image%20(16).png" width="260"/></td>
+</tr>
+</table>
 
 ---
 
 ## g. How to run the project
- 
+
 ### Prerequisites
 - Node.js v18+ and npm
 - A free Google Gemini API key ([aistudio.google.com](https://aistudio.google.com))
 - A Firebase project set up (Firestore enabled)
+
 ### Setup
- 
+
 ```bash
 # 1. Clone the repo
 git clone [YOUR REPO URL]
 cd sparkflow
- 
+
 # 2. Install dependencies
 npm install
- 
+
 # 3. Set up environment variables
 # Create a .env file in the root directory (see .env.example):
 ```
- 
+
 ```env
 GEMINI_API_KEY="your_gemini_api_key_here"
 APP_URL="your_app_url_here"
- 
+
 VITE_FIREBASE_API_KEY="your_firebase_api_key_here"
 VITE_FIREBASE_AUTH_DOMAIN="your_project_id.firebaseapp.com"
 VITE_FIREBASE_PROJECT_ID="your_project_id"
@@ -272,19 +281,18 @@ VITE_FIREBASE_STORAGE_BUCKET="your_project_id.firebasestorage.app"
 VITE_FIREBASE_MESSAGING_SENDER_ID="your_messaging_sender_id"
 VITE_FIREBASE_APP_ID="your_app_id"
 ```
- 
+
 ```bash
 # 4. Run the app locally
 npm run dev
 ```
 
-
 ### Deployment
-This project is deployed on [Vercel] at: https://sparkflow-fkmqc62hx-syeda-noor-fatima.vercel.app/
+This project is deployed on Vercel at: https://sparkflow-fkmqc62hx-syeda-noor-fatima.vercel.app/
 
 To redeploy your own copy:
 1. Fork/clone this repo.
-2. Connect it to [Vercel].
+2. Connect it to Vercel.
 3. Add the environment variables listed above in the hosting dashboard.
 4. Deploy.
 
@@ -296,7 +304,7 @@ SparkFlow's design follows a few non-negotiable rules that shaped every feature 
 
 1. **Capture first** — record now, organize later.
 2. **AI performs the executive function** — the user shouldn't have to manually categorize, prioritize, or schedule.
-3. **Never assume** — AI never invents deadlines, priorities, or details; it asks one concise question when something essential is missing.
+3. **Never invent, never interrupt** — AI never invents deadlines, priorities, or details it wasn't given, but it also never stops to ask — it makes its best reasonable interpretation and leaves truly unknown fields as "Not Set."
 4. **User always has control** — every AI decision is editable after saving.
 5. **Reduce cognitive load** — every interaction should remove a decision, not add one.
 6. **Calm before productivity** — the app should make users feel in control, not pressured.
