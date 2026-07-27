@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "inboxCaptures": {
+      "title": "Inbox Captures",
+      "description": "Captured raw inputs awaiting processing or review",
+      "properties": {
+        "userId": { "type": "string", "description": "UID of owner user" },
+        "rawText": { "type": "string", "description": "Original text captured" },
+        "type": { "type": "string", "description": "text or voice" },
+        "status": { "type": "string", "description": "processing status" },
+        "createdAt": { "type": "string", "description": "ISO creation timestamp" }
+      },
+      "required": ["userId", "rawText", "status", "createdAt"]
+    },
+    "tasks": {
+      "title": "Tasks",
+      "description": "User tasks and items",
+      "properties": {
+        "userId": { "type": "string", "description": "UID of owner user" },
+        "title": { "type": "string", "description": "Task title" },
+        "priority": { "type": "string", "description": "must or could" },
+        "category": { "type": "string", "description": "Task category" },
+        "completed": { "type": "boolean", "description": "Is completed" },
+        "createdAt": { "type": "string", "description": "ISO creation timestamp" }
+      },
+      "required": ["userId", "title", "completed", "createdAt"]
+    },
+    "reminderSettings": {
+      "title": "Reminder Settings",
+      "description": "User reminder configuration",
+      "properties": {
+        "userId": { "type": "string", "description": "UID of owner user" },
+        "defaultReminderTime": { "type": "string", "description": "Default reminder time" },
+        "brainDumpReminderTime": { "type": "string", "description": "Brain dump reminder time" },
+        "brainDumpEnabled": { "type": "boolean", "description": "Enable brain dump" },
+        "soundEnabled": { "type": "boolean", "description": "Enable sound" }
+      },
+      "required": ["userId"]
+    },
+    "userSettings": {
+      "title": "User Settings",
+      "description": "User application settings",
+      "properties": {
+        "userId": { "type": "string", "description": "UID of owner user" },
+        "theme": { "type": "string", "description": "UI theme choice" },
+        "offlineMode": { "type": "boolean", "description": "Offline mode toggle" }
+      },
+      "required": ["userId"]
+    }
+  }
+}

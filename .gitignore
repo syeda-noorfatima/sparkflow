@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+coverage/
+
+# Misc
+.DS_Store
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*
+.env.example

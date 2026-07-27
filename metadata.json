@@ -1,0 +1,6 @@
+{
+  "name": "SparkFlow",
+  "description": "AI-powered ADHD brain-dump & executive functioning assistant designed to transform unstructured thoughts into clear, organized tasks.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
