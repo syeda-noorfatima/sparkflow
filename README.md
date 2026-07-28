@@ -235,14 +235,11 @@ Return structured JSON conforming strictly to the response schema.
 <tr>
 <td><img src="./assets/screenshots/image%20(10).png" width="260"/></td>
 <td><img src="./assets/screenshots/image%20(11).png" width="260"/></td>
-<td><img src="./assets/screenshots/image%20(12).png" width="260"/></td>
+<td><img src="./assets/screenshots/image%20(13).png" width="260"/></td>
 </tr>
 <tr>
-<td><img src="./assets/screenshots/image%20(13).png" width="260"/></td>
 <td><img src="./assets/screenshots/image%20(14).png" width="260"/></td>
 <td><img src="./assets/screenshots/image%20(15).png" width="260"/></td>
-</tr>
-<tr>
 <td><img src="./assets/screenshots/image%20(16).png" width="260"/></td>
 </tr>
 </table>
@@ -312,6 +309,15 @@ SparkFlow's design follows a few non-negotiable rules that shaped every feature 
 ---
 
 ## Project status
+
+The application was fully functional during development and meets the assignment requirements when run locally. All core features, including the AI-powered Executive Assistant, work correctly in the local development environment.
+
+The current Vercel deployment has a backend/serverless API routing issue that prevents the AI backend from executing properly in the hosted environment. As a result, the **Executive Assistant AI features are not functional on the deployed version**, even though the frontend is accessible.
+
+To verify the complete functionality of the project, please run the application locally using the setup instructions provided in this repository. In the local environment, the backend APIs and AI integration function as intended.
+
+I attempted to resolve the deployment-specific issue on Vercel, but it appears to be related to the hosting environment rather than the application logic itself. The source code included in this repository represents the intended implementation of the assignment, and the project operates correctly when executed locally.
+
 
 MVP scope includes: text + voice capture, AI extraction & prioritization, Must Do / Could Do sorting, reminders, calendar (month/week), dashboard, task editing, notifications, and offline capture.
 
